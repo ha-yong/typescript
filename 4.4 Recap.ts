@@ -1,5 +1,6 @@
 // typeとinterfaceはobjectの形を教えてあげるためにつかう
-// 
+// interfaceの全ての機能はtypeで使える
+// typeは再度開いて新しい属性を追加できないがinterfaceは拡張可能。
 type Recap = {
     name:string
 }

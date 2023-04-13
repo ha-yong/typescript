@@ -1,4 +1,5 @@
 // Genericsを使うことで、全てのタイプを使用できる。
+// Tの代わりに他の文字を入れても構わない。
 interface SStorage<T> {
     [key: string]: T;
 }
