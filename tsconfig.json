@@ -1,0 +1,10 @@
+//  targetはJSバージョンを指定する
+// libはどのAPIをどの環境で実行するかを指定する
+{
+    "include": ["src"],
+    "compilerOptions": {
+        "outDir": "build",
+        "target": "ES6",
+        "lib": ["ES6","DOM"]
+    }
+}
