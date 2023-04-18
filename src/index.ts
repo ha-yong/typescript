@@ -1,3 +1,7 @@
+// npm i -D ts-node : buildせずにjsが実行できる。
+// npm i nodemon : コマンドを実行する必要がない
+// npm run dev
+
 import crypto from 'crypto'; 
 
 interface BlockShape {
@@ -17,5 +21,32 @@ class Block implements BlockShape {
     }
     static calcHash(prevHash: string, height: number, data: string) {
         const toHash = '${prevHash}${height}${data}';
+        return crypto.createHash("sha256").update(toHash).digest('hex');
     }
 }
+
+class Blockchain {
+    private blocks: Block[];
+    constructor(){
+        this.blocks = [];
+    }
+    private getPrevHash(){
+        if(this.blocks.length === 0){ return "" }
+        return this.blocks[this.blocks.length - 1].hash;
+    }
+    public addBlock(data:string) {
+        const newBlock = new Block(this.getPrevHash(), this.blocks.length + 1, data);
+        this.blocks.push(newBlock);
+    }
+    public getBlocks(){
+        return this.blocks;
+    }
+}
+
+const blockchain = new Blockchain();
+
+blockchain.addBlock("First block");
+blockchain.addBlock("Second block");
+blockchain.addBlock("Third block");
+
+console.log(blockchain.getBlocks());
